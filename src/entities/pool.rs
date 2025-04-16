@@ -288,21 +288,17 @@ impl<TP: TickDataProvider> Pool<TP> {
         amount_specified: I256,
         sqrt_price_limit_x96: Option<U160>,
     ) -> Result<SwapState<TP::Index>, Error> {
-        if !self.hook_impacts_swap() {
-            Ok(v3_swap(
-                self.fee,
-                self.sqrt_price_x96,
-                self.tick_current,
-                self.liquidity,
-                self.tick_spacing,
-                &self.tick_data_provider,
-                zero_for_one,
-                amount_specified,
-                sqrt_price_limit_x96,
-            )?)
-        } else {
-            Err(Error::UnsupportedHook)
-        }
+        Ok(v3_swap(
+            self.fee,
+            self.sqrt_price_x96,
+            self.tick_current,
+            self.liquidity,
+            self.tick_spacing,
+            &self.tick_data_provider,
+            zero_for_one,
+            amount_specified,
+            sqrt_price_limit_x96,
+        )?)
     }
 
     const fn hook_impacts_swap(&self) -> bool {
