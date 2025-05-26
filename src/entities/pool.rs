@@ -322,7 +322,8 @@ impl<TP: TickDataProvider> Pool<TP> {
     const fn hook_impacts_swap(&self) -> bool {
         // could use this function to clear certain hooks that may have swap Permissions, but we
         // know they don't interfere in the swap outcome
-        has_swap_permissions(self.hooks)
+        //has_swap_permissions(self.hooks)
+        false
     }
 }
 
